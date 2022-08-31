@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build IPK
+name: Build Official
 
 on:
   workflow_dispatch:
@@ -99,17 +99,18 @@ jobs:
 
     - name: Organize files
       id: organize
-      if: (!cancelled())
+      if: (!cancelled()) 
       run: |
-        cd openwrt/bin
-        rm -rf targets/*/*/packages
-        echo "FIRMWARE=$PWD/targets/*/*" >> $GITHUB_ENV
-        echo "IPK=$PWD/packages/*" >> $GITHUB_ENV
+        cd openwrt/bin/targets/*/*
+        rm -rf packages
+        echo "FIRMWARE=$PWD" >> $GITHUB_ENV
+        cd openwrt/bin/packages/*
+        echo "IPK=$PWD" >> $GITHUB_ENV
         echo "::set-output name=status::success"
 
     - name: Generate release tag
       id: tag
-      if: (!cancelled())
+      if: (!cancelled()) 
       run: |
         echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M")"
         touch release.txt
@@ -124,8 +125,8 @@ jobs:
         tag_name: ${{ steps.tag.outputs.release_tag }}
         body_path: release.txt
         files_path: |
-            ${{ env.FIRMWARE }}
-            ${{ env.IPK }}
+            ${{ env.FIRMWARE }}*
+            ${{ env.IPK }}*
 
     - name: Delete workflow runs
       uses: GitRML/delete-workflow-runs@main
