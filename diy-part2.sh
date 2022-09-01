@@ -17,4 +17,7 @@
 svn co https://github.com/Haris131/xmm-modem/trunk package/xmm-modem
 
 # HelmiWrt MactoIface
-svn co https://github.com/helmiau/helmiwrt-packages/tree/main/mactoiface package/mactoiface
+mkdir package/community
+pushd package/community
+git clone --depth=1 https://github.com/helmiau/helmiwrt-packages
+popd
