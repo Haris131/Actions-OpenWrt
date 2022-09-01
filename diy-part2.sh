@@ -15,3 +15,6 @@
 
 # Intel XMM 7650 LTE-A Pro modem.
 svn co https://github.com/Haris131/xmm-modem/trunk package/xmm-modem
+
+# HelmiWrt MactoIface
+svn co https://github.com/helmiau/helmiwrt-packages/tree/main/mactoiface package/mactoiface
