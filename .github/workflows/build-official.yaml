@@ -101,7 +101,9 @@ jobs:
       run: df -hT
 
     - name: Tar files
-      run: tar -cvf openwrt.tar openwrt
+      run: |
+        tar -cvf $GITHUB_WORKSPACE/openwrt.tar $GITHUB_WORKSPACE/openwrt
+        echo "TARFILES=$PWD" >> $GITHUB_ENV
 
     - name: Upload bin directory
       uses: actions/upload-artifact@main
@@ -144,7 +146,7 @@ jobs:
         body_path: release.txt
         files: |
             ${{ env.FIRMWARE }}/*
-            openwrt.tar
+            ${{ env.TARFILES }}*
 
     - name: Delete workflow runs
       uses: GitRML/delete-workflow-runs@main
