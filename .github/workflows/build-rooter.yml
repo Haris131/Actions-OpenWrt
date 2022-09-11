@@ -10,6 +10,11 @@
 
 name: Build ROOter
 
+on:
+  workflow_dispatch:
+#  schedule:
+#    - cron: 0 0 * * *
+
 env:
   REPO_URL: https://github.com/ofmodemsandmen/ROOterSource2102
   REPO_BRANCH: main
