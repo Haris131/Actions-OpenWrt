@@ -14,7 +14,8 @@
 #sed -i 's/192.168.1.1/192.168.50.5/g' package/base-files/files/bin/config_generate
 
 # Intel XMM 7650 LTE-A Pro modem.
-svn co https://github.com/Haris131/xmm-modem/trunk package/xmm-modem
+#svn co https://github.com/Haris131/xmm-modem/trunk package/xmm-modem
+echo "src-git modemfeed https://github.com/koshev-msk/modemfeed.git" >> feeds.conf.default
 
 # HelmiWrt MactoIface
 mkdir package/community
