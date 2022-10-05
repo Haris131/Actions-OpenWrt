@@ -1,0 +1,16 @@
+# Target
+CONFIG_TARGET_ramips=y
+CONFIG_TARGET_ramips_mt7621=y
+CONFIG_TARGET_DEVICE_ramips_mt7621_DEVICE_bolt_arion=y
+
+# LuCI Themes
+CONFIG_PACKAGE_luci-theme-material=y
+
+# LuCI Languages
+CONFIG_LUCI_LANG_en=y
+CONFIG_PACKAGE_luci-i18n-base-en=y
+
+CONFIG_PACKAGE_luci-app-openclash=y
+CONFIG_PACKAGE_ttyd=y
+CONFIG_PACKAGE_luci-app-ttyd=y
+CONFIG_PACKAGE_zoneinfo-asia=y
