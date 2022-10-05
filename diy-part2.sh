@@ -21,3 +21,10 @@ mkdir package/community
 pushd package/community
 git clone --depth=1 https://github.com/helmiau/helmiwrt-packages
 popd
+
+# Add luci-app-openclash
+svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/openwrt-openclash
+pushd package/openwrt-openclash/tools/po2lmo && make && sudo make install 2>/dev/null && popd
+
+svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-ramfree package/luci-app-ramfree
+svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-zerotier package/luci-app-zerotier
