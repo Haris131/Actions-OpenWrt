@@ -19,7 +19,7 @@
 # HelmiWrt MactoIface
 mkdir package/community
 pushd package/community
-git clone --depth=1 https://github.com/helmiau/helmiwrt-packages
+git clone --depth=1 https://github.com/Haris131/helmiwrt-packages
 popd
 
 # Add luci-app-openclash
