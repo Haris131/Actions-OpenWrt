@@ -56,9 +56,9 @@ jobs:
       working-directory: /workdir
       run: |
         df -hT $PWD
-        wget -O v21.02.3.zip https://github.com/openwrt/openwrt/archive/refs/tags/v21.02.3.zip
-        mkdir -p openwrt
-        unzip v21.02.3.zip -d openwrt
+        wget -O openwrt-21.02.3.tar https://github.com/Haris131/Actions-OpenWrt/raw/main/openwrt-21.02.3.tar
+        tar xvf openwrt-21.02.3.tar
+        mv openwrt-21.02.3 openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
     - name: Load custom feeds
