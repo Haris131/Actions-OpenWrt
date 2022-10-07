@@ -20,8 +20,7 @@ on:
         default: 'false'
 
 env:
-  REPO_URL: https://github.com/Haris131/openwrt
-  REPO_BRANCH: openwrt-21.02
+  REPO_URL: https://github.com/Haris131/Actions-OpenWrt/trunk/openwrt-21.02.3
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: .config
   DIY_P1_SH: diy-part1.sh
@@ -58,7 +57,7 @@ jobs:
       working-directory: /workdir
       run: |
         df -hT $PWD
-        git clone $REPO_URL -b $REPO_BRANCH openwrt
+        svn co $REPO_URL openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
     - name: Load custom feeds
