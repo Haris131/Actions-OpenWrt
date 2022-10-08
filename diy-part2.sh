@@ -16,7 +16,11 @@
 # Intel XMM 7650 LTE-A Pro modem.
 #svn co https://github.com/Haris131/xmm-modem/trunk package/xmm-modem
 
+# Clone community packages to package/community
 mkdir package/community
 pushd package/community
+# Add OpenClash
+git clone --depth=1 -b dev https://github.com/vernesong/OpenClash
+
 git clone --depth=1 https://github.com/Haris131/helmiwrt-packages
 popd
