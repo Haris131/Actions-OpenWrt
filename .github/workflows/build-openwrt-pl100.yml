@@ -18,12 +18,16 @@ on:
         description: 'SSH connection to Actions'
         required: false
         default: 'false'
+      config:
+        description: "Set the path .config"
+        required: true
+        default: "pl100/.config"
 
 env:
   REPO_URL: https://github.com/Haris131/openwrt
   REPO_BRANCH: openwrt-21.02
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: pl100/.config
+  CONFIG_FILE: ${{ github.event.inputs.kernel_config }}
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
   UPLOAD_BIN_DIR: true
