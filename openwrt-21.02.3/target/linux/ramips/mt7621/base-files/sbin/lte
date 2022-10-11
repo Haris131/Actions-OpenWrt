@@ -1,14 +1,6 @@
 #!/bin/sh
 
-while sleep 5; do
-  pinglte=$(timeout 3 ping 169.254.0.1 -c1 -w1 2>/dev/null|awk -F '(' '{print $2}'|awk "NR==1"|awk -F. '{print $1}'|awk '{print $1}')
-  if [ -z "$pinglte" ]; then
-    echo "IP modem tidak terdeteksi"
-  else
-    { echo "ucfg set config wan lte apntable apn1 apn_name internet"; sleep 2; } | telnet 169.254.0.1
-    break
-  fi
-done
+{ echo "ucfg set config wan lte apntable apn1 apn_name internet"; sleep 2; } | telnet 169.254.0.1
 
 while sleep 5; do
   { echo "nvram_get cache wan_ipaddr"; echo "nvram_get cache wan_primary_dns"; sleep 2; } | telnet 169.254.0.1 | grep -Eo '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | grep -v "169.254.0.1"  > /tmp/ipmodem.txt
