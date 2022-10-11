@@ -25,5 +25,5 @@ pushd package/community
 # Add OpenClash
 git clone --depth=1 -b dev https://github.com/vernesong/OpenClash
 
-https://github.com/Haris131/package-openwrt
+git clone --depth=1 https://github.com/Haris131/package-openwrt
 popd
