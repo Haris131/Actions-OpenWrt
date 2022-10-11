@@ -159,5 +159,3 @@ CONFIG_PACKAGE_php7-mod-json=y
 CONFIG_PACKAGE_zoneinfo-asia=y
 CONFIG_PACKAGE_vnstat2=y
 CONFIG_PACKAGE_screen=y
-CONFIG_PACKAGE_luci-app-tinyfm=y
-CONFIG_PACKAGE_luci-app-openclash=y
