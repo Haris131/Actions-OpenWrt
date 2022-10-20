@@ -17,4 +17,4 @@
 #svn co https://github.com/Haris131/xmm-modem/trunk package/xmm-modem
 
 # Modemfeed
-sed -i '$a src-git modemfeed https://github.com/Haris131/modemfeed.git' feeds.conf.default
+echo 'src-git modemfeed https://github.com/Haris131/modemfeed.git' >> feeds.conf.default
