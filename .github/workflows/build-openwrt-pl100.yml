@@ -18,6 +18,14 @@ on:
         description: 'SSH connection to Actions'
         required: false
         default: 'false'
+      branch:
+        description: "Select the releases branch"
+        required: false
+        default: "21.02.3"
+        type: choice
+        options:
+          - 21.02.3
+          - 18.06.9
       config:
         description: "Set the path .config"
         required: true
@@ -63,7 +71,7 @@ jobs:
       run: |
         df -hT $PWD
         #git clone $REPO_URL -b $REPO_BRANCH openwrt
-        svn co https://github.com/Haris131/Actions-OpenWrt/trunk/openwrt-21.02.3 openwrt
+        svn co https://github.com/Haris131/Actions-OpenWrt/trunk/openwrt-${{ github.event.inputs.branch }} openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
     - name: Load custom feeds
