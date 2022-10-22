@@ -26,6 +26,11 @@
 		serial0 = &uartlite;
 	};
 
+	chosen {
+		bootargs = "console=ttyS0,57600";
+	};
+
+
 	cpuclock: cpuclock@0 {
 		#clock-cells = <0>;
 		compatible = "fixed-clock";
@@ -41,8 +46,6 @@
 		/* FIXME: there should be way to detect this */
 		clock-frequency = <50000000>;
 	};
-
-
 
 	palmbus: palmbus@1E000000 {
 		compatible = "palmbus";
