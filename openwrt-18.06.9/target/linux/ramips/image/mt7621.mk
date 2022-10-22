@@ -41,11 +41,6 @@ define Build/ubnt-erx-factory-image
 	fi
 endef
 
-define Device/dsa-migration
-  DEVICE_COMPAT_VERSION := 1.1
-  DEVICE_COMPAT_MESSAGE := Config cannot be migrated from swconfig to DSA
-endef
-
 define Device/11acnas
   DTS := 11ACNAS
   IMAGE_SIZE := $(ralink_default_fw_size_16M)
@@ -95,9 +90,7 @@ endef
 TARGET_DEVICES += elecom_wrc-1167ghbk2-s
 
 define Device/bolt_arion
-  $(Device/dsa-migration)
-  $(Device/uimage-lzma-loader)
-  DTS := BOLT-ARION
+  DTS := BOLT_ARION
   DEVICE_TITLE := Bolt Arion
   IMAGE_SIZE := 32448k
   DEVICE_PACKAGES := kmod-mt7603 kmod-mt76x2 uboot-envtools
