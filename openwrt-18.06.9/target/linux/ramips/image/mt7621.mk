@@ -90,7 +90,7 @@ endef
 TARGET_DEVICES += elecom_wrc-1167ghbk2-s
 
 define Device/bolt_arion
-  DTS := BOLT_ARION
+  DTS := BOLT-ARION
   DEVICE_TITLE := Bolt Arion
   IMAGE_SIZE := 32448k
   DEVICE_PACKAGES := kmod-mt7603 kmod-mt76x2 uboot-envtools
