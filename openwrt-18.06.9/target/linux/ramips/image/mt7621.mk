@@ -50,16 +50,6 @@ define Device/11acnas
 endef
 TARGET_DEVICES += 11acnas
 
-define Device/bolt_arion
-  $(Device/dsa-migration)
-  $(Device/uimage-lzma-loader)
-  IMAGE_SIZE := 32448k
-  DEVICE_VENDOR := BOLT
-  DEVICE_MODEL := Arion
-  DEVICE_PACKAGES := kmod-mt7603 kmod-mt76x2 uboot-envtools
-endef
-TARGET_DEVICES += bolt_arion
-
 define Device/dir-860l-b1
   DTS := DIR-860L-B1
   BLOCKSIZE := 64k
@@ -98,6 +88,18 @@ define Device/elecom_wrc-1167ghbk2-s
     elecom-wrc-factory WRC-1167GHBK2-S 0.00
 endef
 TARGET_DEVICES += elecom_wrc-1167ghbk2-s
+
+define Device/bolt_arion
+  $(Device/dsa-migration)
+  $(Device/uimage-lzma-loader)
+  DTS := BOLT-ARION
+  DEVICE_TITLE := Bolt Arion
+  IMAGE_SIZE := 32448k
+  DEVICE_VENDOR := BOLT
+  DEVICE_MODEL := Arion
+  DEVICE_PACKAGES := kmod-mt7603 kmod-mt76x2 uboot-envtools
+endef
+TARGET_DEVICES += bolt_arion
 
 define Device/ew1200
   DTS := EW1200
