@@ -392,6 +392,9 @@
 		compatible = "mediatek,mt7621-eth";
 		reg = <0x1e100000 0x10000>;
 
+		clocks = <&sysclock>;
+		clock-names = "ethif";
+
 		#address-cells = <1>;
 		#size-cells = <0>;
 
@@ -401,15 +404,87 @@
 		interrupt-parent = <&gic>;
 		interrupts = <GIC_SHARED 3 IRQ_TYPE_LEVEL_HIGH>;
 
-		mediatek,switch = <&gsw>;
+		mediatek,ethsys = <&ethsys>;
 
-		mdio-bus {
+		gmac0: mac@0 {
+			compatible = "mediatek,eth-mac";
+			reg = <0>;
+			phy-mode = "rgmii";
+
+			fixed-link {
+				speed = <1000>;
+				full-duplex;
+				pause;
+			};
+		};
+
+		gmac1: mac@1 {
+			compatible = "mediatek,eth-mac";
+			reg = <1>;
+			status = "disabled";
+			phy-mode = "rgmii-rxid";
+		};
+
+		mdio: mdio-bus {
 			#address-cells = <1>;
 			#size-cells = <0>;
 
-			phy1f: ethernet-phy@1f {
+			switch0: switch@1f {
+				compatible = "mediatek,mt7621";
+				#address-cells = <1>;
+				#size-cells = <0>;
 				reg = <0x1f>;
-				phy-mode = "rgmii";
+				mediatek,mcm;
+				resets = <&rstctrl 2>;
+				reset-names = "mcm";
+
+				ports {
+					#address-cells = <1>;
+					#size-cells = <0>;
+					reg = <0>;
+
+					port@0 {
+						status = "disabled";
+						reg = <0>;
+						label = "lan0";
+					};
+
+					port@1 {
+						status = "disabled";
+						reg = <1>;
+						label = "lan1";
+					};
+
+					port@2 {
+						status = "disabled";
+						reg = <2>;
+						label = "lan2";
+					};
+
+					port@3 {
+						status = "disabled";
+						reg = <3>;
+						label = "lan3";
+					};
+
+					port@4 {
+						status = "disabled";
+						reg = <4>;
+						label = "lan4";
+					};
+
+					port@6 {
+						reg = <6>;
+						label = "cpu";
+						ethernet = <&gmac0>;
+						phy-mode = "rgmii";
+
+						fixed-link {
+							speed = <1000>;
+							full-duplex;
+						};
+					};
+				};
 			};
 		};
 	};
@@ -451,32 +526,45 @@
 		reset-names = "pcie0", "pcie1", "pcie2";
 		clocks = <&clkctrl 24 &clkctrl 25 &clkctrl 26>;
 		clock-names = "pcie0", "pcie1", "pcie2";
+		phys = <&pcie0_phy 1>, <&pcie2_phy 0>;
+		phy-names = "pcie-phy0", "pcie-phy2";
 
-		pcie0 {
+		reset-gpios = <&gpio 19 GPIO_ACTIVE_LOW>;
+
+		pcie0: pcie@0,0 {
 			reg = <0x0000 0 0 0 0>;
-
 			#address-cells = <3>;
 			#size-cells = <2>;
-
-			device_type = "pci";
+			ranges;
+			bus-range = <0x00 0xff>;
 		};
 
-		pcie1 {
+		pcie1: pcie@1,0 {
 			reg = <0x0800 0 0 0 0>;
-
 			#address-cells = <3>;
 			#size-cells = <2>;
-
-			device_type = "pci";
+			ranges;
+			bus-range = <0x00 0xff>;
 		};
 
-		pcie2 {
+		pcie2: pcie@2,0 {
 			reg = <0x1000 0 0 0 0>;
-
 			#address-cells = <3>;
 			#size-cells = <2>;
-
-			device_type = "pci";
+			ranges;
+			bus-range = <0x00 0xff>;
 		};
+	};
+
+	pcie0_phy: pcie-phy@1e149000 {
+		compatible = "mediatek,mt7621-pci-phy";
+		reg = <0x1e149000 0x0700>;
+		#phy-cells = <1>;
+	};
+
+	pcie2_phy: pcie-phy@1e14a000 {
+		compatible = "mediatek,mt7621-pci-phy";
+		reg = <0x1e14a000 0x0700>;
+		#phy-cells = <1>;
 	};
 };
