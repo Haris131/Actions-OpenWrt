@@ -24,8 +24,8 @@ on:
         default: "21.02.5"
         type: choice
         options:
+          - 22.02.5
           - 22.03.2
-          - 21.03.5
       config:
         description: "Set the path .config"
         required: true
