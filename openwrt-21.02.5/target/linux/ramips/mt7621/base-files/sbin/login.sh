@@ -1,43 +1,28 @@
-#!/bin/bash
-clear
+#!/bin/sh
 
-ipmodem="192.168.7.1"
-pass="admin"
+{ echo "ucfg set config wan lte apntable apn1 apn_name internet"; sleep 2; } | telnet 169.254.0.1
 
-data=$(curl -s http://$ipmodem/api/webserver/SesTokInfo -H "Host: $ipmodem" -H "Connection: keep-alive" -H "Accept: */*" -H "X-Requested-With: XMLHttpRequest" -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.119 Safari/537.36" -H "Referer: http://$ipmodem/html/home.html" -H "Accept-Encoding: gzib, deflate" -H "Accept-Language: id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7")
-sesi=$(echo "$data" | grep "SessionID=" | cut -b 10-147)
-token=$(echo "$data" | grep "TokInfo" | cut -b 10-41)
+while sleep 5; do
+{ echo "nvram_get cache wan_ipaddr"; echo "nvram_get cache wan_primary_dns"; sleep 2; } | telnet 169.254.0.1 | grep -Eo '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | grep -v "169.254.0.1"  > /tmp/ipmodem.txt
 
-check=$(curl -s http://$ipmodem/api/user/state-login -H "Host: $ipmodem" -H "Connection: keep-alive" -H "Accept: */*" -H "X-Requested-With: XMLHttpRequest" -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.119 Safari/537.36" -H "Referer: http://$ipmodem/html/home.html" -H "Accept-Encoding: gzib, deflate" -H "Accept-Language: id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7" -H "Cookie: $sesi")
-state=$(echo $check|awk -F "<State>" '{print $2}'|awk -F "</State>" '{print $1}')
-type=$(echo $check|awk -F "<password_type>" '{print $2}'|awk -F "</password_type>" '{print $1}')
-if [ $state = "0" ]; then
-  echo "Activated Successfully";
+ethdataip=$(ifconfig modem.103 | grep 'inet addr' | cut -d: -f2 | awk '{print $1}')
+lteip=$(head -1 /tmp/ipmodem.txt)
+ltedns=$(tail -1 /tmp/ipmodem.txt)
+
+if [ -z "$lteip" ]
+then
+      logger -p notice -t lte "IP modem tidak dapat di cek"
 else
-  if [ $type = "4" ]; then
-    pass1=$(echo -n "$pass"|sha256sum|head -c 64|base64 -w 0)
-    pass1=$(echo -n "admin$pass1$token"|sha256sum|head -c 64|base64 -w 0)
-    pass1=$(echo -n "$pass1</Password><password_type>4</password_type>")
-  else
-    pass1=$(echo -n "$pass"|base64 -w 0)
-    pass1=$(echo -n "$pass1</Password>")
-  fi
-  login=$(curl -s -D- -o/dev/null -X POST http://$ipmodem/api/user/login -H "Host: $ipmodem" -H "Connection: keep-alive" -H "Accept: */*" -H "Origin: http://$ipmodem" -H "X-Requested-With: XMLHttpRequest" -H "__RequestVerificationToken: $token" -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.119 Safari/537.36" -H "Content-Type: application/x-www-form-urlencoded; charset=UTF-8" -H "Referer: http://$ipmodem/html/home.html" -H "Accept-Encoding: gzib, deflate" -H "Accept-Language: id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7" -H "Cookie: $sesi" -d '<?xml version="1.0" encoding="UTF-8"?><request><Username>admin</Username><Password>'$pass1'</request>')
-  scoki=$(echo "$login"|grep [Ss]et-[Cc]ookie|cut -d':' -f2|cut -b 1-138)
-  if [ $scoki ]; then
-    echo -e "Login Success"
-  else
-    echo -e "Login Failed"
-    exit
-  fi
+     if [[ "$ethdataip" != "$lteip" ]];then
+         logger -p notice -t lte "IP berubah dari $ethdataip menjadi $lteip dns $ltedns"
+         uci set network.eth_data.ipaddr="$lteip"
+         uci set network.eth_data.dns="$ltedns"
+         uci commit network
+         /etc/init.d/network reload
+         ip route add default dev modem.103
+	 sleep 60
+        else
+         logger -p notice -t lte "OK IP eth_data $ethdataip"
+        fi
 fi
-
-data=$(curl -s http://$ipmodem/api/webserver/SesTokInfo -H "Host: $ipmodem" -H "Connection: keep-alive" -H "Accept: */*" -H "X-Requested-With: XMLHttpRequest" -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.119 Safari/537.36" -H "Referer: http://$ipmodem/html/home.html" -H "Accept-Encoding: gzib, deflate" -H "Accept-Language: id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7" -H "Cookie: $scoki")
-sesi=$(echo "$data" | grep "SessionID=" | cut -b 10-147)
-token=$(echo "$data" | grep "TokInfo" | cut -b 10-41)
-
-ip=$(curl -s http://$ipmodem/api/device/information -H "Host: $ipmodem" -H "Connection: keep-alive" -H "Accept: */*" -H "X-Requested-With: XMLHttpRequest" -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.119 Safari/537.36" -H "Referer: http://$ipmodem/html/home.html" -H "Accept-Encoding: gzib, deflate" -H "Accept-Language: id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7" -H "Cookie: $sesi")
-ipp=$(echo $ip|awk -F "<WanIPAddress>" '{print $2}'|awk -F "</WanIPAddress>" '{print $1}')
-tp=$(echo $ip|awk -F "<DeviceName>" '{print $2}'|awk -F "</DeviceName>" '{print $1}')
-echo -e "Device : $tp"
-echo -e "Wan IP : $ipp"
+done
