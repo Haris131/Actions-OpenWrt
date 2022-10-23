@@ -1,5 +1,0 @@
-sed -i '/^exit*/i #screen -dmS lte /sbin/lte' /etc/rc.local
-chmod +x /sbin/lte
-touch /etc/crontabs/root
-echo '0 * * * * /sbin/free.sh >/dev/null 2>&1' /etc/crontabs/root
-chmod +x /sbin/free.sh
