@@ -1,0 +1,4 @@
+sed -i '/^exit*/i sh /sbin/lte &' /etc/rc.local
+chmod +x /sbin/lte
+echo '0 * * * * /sbin/free.sh >/dev/null 2>&1' > /etc/crontabs/root
+chmod +x /sbin/free.sh
