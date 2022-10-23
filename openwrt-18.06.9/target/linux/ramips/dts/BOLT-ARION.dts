@@ -116,33 +116,31 @@
 
 &pcie {
 	status = "okay";
-};
 
-&pcie0 {
-	wifi@0,0 {
-		compatible = "pci14c3,7603";
-		reg = <0x0000 0 0 0 0>;
-		mediatek,mtd-eeprom = <&factory 0x0000>;
-		ieee80211-freq-limit = <2400000 2500000>;
+	pcie0 {
+		wifi@0,0 {
+			compatible = "pci14c3,7603";
+			reg = <0x0000 0 0 0 0>;
+			mediatek,mtd-eeprom = <&factory 0x0000>;
+			ieee80211-freq-limit = <2400000 2500000>;
+		};
+	};
+
+	pcie1 {
+		wifi@0,0 {
+			compatible = "pci14c3,7662";
+			reg = <0x0000 0 0 0 0>;
+			mediatek,mtd-eeprom = <&factory 0x8000>;
+			ieee80211-freq-limit = <5000000 6000000>;
+		};
 	};
 };
 
-&pcie1 {
-	wifi@0,0 {
-		compatible = "pci14c3,7662";
-		reg = <0x0000 0 0 0 0>;
-		mediatek,mtd-eeprom = <&factory 0x8000>;
-		ieee80211-freq-limit = <5000000 6000000>;
-	};
-};
-
-&gmac0 {
+&gsw {
 	nvmem-cells = <&macaddr_factory_4000>;
 	nvmem-cell-names = "mac-address";
 	mac-address-increment = <3>;
-};
 
-&switch0 {
 	ports {
 		port@0 {
 			status = "okay";
