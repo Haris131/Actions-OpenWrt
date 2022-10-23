@@ -18,3 +18,15 @@
 
 # Modemfeed
 echo 'src-git modemfeed https://github.com/Haris131/modemfeed.git' >> feeds.conf.default
+
+# Clone community packages to package/community
+mkdir package/community
+pushd package/community
+
+# Add OpenClash
+git clone --depth=1 -b dev https://github.com/vernesong/OpenClash
+
+# Add Xray
+git clone --depth=1 https://github.com/yichya/luci-app-xray
+
+popd
