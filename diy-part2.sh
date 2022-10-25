@@ -17,7 +17,7 @@
 #svn co https://github.com/Haris131/xmm-modem/trunk package/xmm-modem
 
 # Modemfeed
-svn co https://koshev-msk/Haris131/modemfeed/trunk/luci package/luci
+svn co https://github.com/koshev-msk/modemfeed/trunk/luci package/luci
 svn co https://github.com/Haris131/modemfeed/trunk/packages package/packages
 
 # Clone community packages to package/community
