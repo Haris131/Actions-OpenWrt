@@ -17,7 +17,8 @@
 #svn co https://github.com/Haris131/xmm-modem/trunk package/xmm-modem
 
 # Modemfeed
-echo 'src-git modemfeed https://github.com/Haris131/modemfeed.git' >> feeds.conf.default
+svn co https://koshev-msk/Haris131/modemfeed/trunk/luci package/luci
+svn co https://github.com/Haris131/modemfeed/trunk/packages package/packages
 
 # Clone community packages to package/community
 mkdir package/community
