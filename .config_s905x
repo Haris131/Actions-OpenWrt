@@ -15,6 +15,9 @@ CONFIG_PACKAGE_luci-theme-bootstrap=y
 CONFIG_PACKAGE_luci-theme-material=y
 
 # Custom
+# CONFIG_PACKAGE_dnsmasq is not set
+CONFIG_PACKAGE_DEFAULT_dnsmasq-full=y
+CONFIG_PACKAGE_dnsmasq-full=y
 CONFIG_PACKAGE_adb=y
 CONFIG_PACKAGE_adguardhome=y
 CONFIG_PACKAGE_ath9k-htc-firmware=y
