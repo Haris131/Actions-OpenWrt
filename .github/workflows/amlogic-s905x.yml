@@ -140,15 +140,29 @@ jobs:
         name: OpenWrt_firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
         path: ${{ env.FIRMWARE }}
 
+    - name: Generate release tag
+      id: tag
+      if: env.UPLOAD_RELEASE == 'true' && !cancelled()
+      run: |
+        echo "::set-output name=release_tag::Amlogic_S905X"
+        echo "::set-output name=status::success"
+
     - name: Upload firmware to release
       uses: softprops/action-gh-release@v1
-      if: env.UPLOAD_RELEASE == 'true' && !cancelled()
+      if: steps.tag.outputs.status == 'success' && !cancelled()
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag: Amlogic_S905X
-        body_path: release.txt
         files: ${{ env.FIRMWARE }}/*
+        body: |
+            This is OpenWrt firmware for Amlogic s905x tv box
+            * Firmware information
+            Default IP: 192.168.1.1
+            Default username: root
+            Default password: none
+            Default WIFI name: OpenWrt
+            Default WIFI password: none
 
     - name: Delete workflow runs
       uses: GitRML/delete-workflow-runs@main
