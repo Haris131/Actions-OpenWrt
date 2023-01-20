@@ -153,7 +153,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag: Amlogic_S905X
+        tag_name: Amlogic_S905X
         files: ${{ env.FIRMWARE }}/*
         body: |
             This is OpenWrt firmware for Amlogic s905x tv box
