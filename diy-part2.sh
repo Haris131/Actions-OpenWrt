@@ -36,7 +36,7 @@ svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/l
 git clone --depth=1 https://github.com/gSpotx2f/luci-app-temp-status package/luci-app-temp-status
 
 # Add upx
-git clone --depth=1  https://github.com/kuoruan/openwrt-upx.git package/openwrt-upx
+git clone --depth=1  https://github.com/kuoruan/openwrt-upx.git package/upx
 
 # HelmiWrt packages
 git clone --depth=1 https://github.com/helmiau/helmiwrt-packages
