@@ -24,7 +24,7 @@ svn co https://github.com/ophub/luci-app-amlogic/trunk/luci-app-amlogic package/
 svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/luci-app-openclash
 
 # Add luci-app-diskman
-svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-app-diskman package/luci-app-diskman
+#svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-app-diskman package/luci-app-diskman
 
 # Add luci-app-adguardhome
 git clone --depth=1 https://github.com/yang229/luci-app-adguardhome package/luci-app-adguardhome
@@ -39,7 +39,7 @@ git clone --depth=1 https://github.com/gSpotx2f/luci-app-temp-status package/luc
 git clone --depth=1  https://github.com/kuoruan/openwrt-upx.git package/openwrt-upx
 
 # HelmiWrt packages
-git clone --depth=1 https://github.com/helmiau/helmiwrt-packages
+git clone --depth=1 https://github.com/Haris131/helmiwrt-packages package/hemliwrt-packages
 rm -rf helmiwrt-packages/luci-app-v2raya
 
 #-----------------------------------------------------------------------------
