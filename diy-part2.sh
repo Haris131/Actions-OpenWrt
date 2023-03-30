@@ -42,8 +42,8 @@ git clone --depth=1 https://github.com/friyadhibiermann/shc_openwrt.git package/
 git clone --depth=1  https://github.com/kuoruan/openwrt-upx.git package/openwrt-upx
 
 # HelmiWrt packages
-git clone --depth=1 https://github.com/Haris131/helmiwrt-packages package/hemliwrt-packages
-rm -rf helmiwrt-packages/luci-app-v2raya
+git clone --depth=1 https://github.com/Haris131/helmiwrt-packages package/helmiwrt-packages
+rm -rf feeds/packages/net/redsocks
 
 #-----------------------------------------------------------------------------
 #   Start of @helmiau terminal scripts additionals menu
