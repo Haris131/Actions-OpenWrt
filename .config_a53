@@ -11,7 +11,5 @@ CONFIG_LUCI_LANG_en=y
 CONFIG_PACKAGE_luci-i18n-base-en=y
 
 # Custom
-CONFIG_PACKAGE_luci-app-libernet-plus=y
-CONFIG_PACKAGE_luci-app-tinyfm=y
 CONFIG_PACKAGE_shc=y
 CONFIG_PACKAGE_upx=y
