@@ -29,7 +29,7 @@ svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/l
 # Add luci-app-adguardhome
 git clone --depth=1 https://github.com/yang229/luci-app-adguardhome package/luci-app-adguardhome
 
-# Add luci-app-temp-status
+# Add luci-app-openclash
 svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/luci-app-openclash
 
 # Add luci-app-temp-status
@@ -43,7 +43,6 @@ git clone --depth=1  https://github.com/kuoruan/openwrt-upx.git package/openwrt-
 
 # HelmiWrt packages
 git clone --depth=1 https://github.com/Haris131/helmiwrt-packages package/helmiwrt-packages
-rm -rf feeds/packages/net/redsocks
 
 #-----------------------------------------------------------------------------
 #   Start of @helmiau terminal scripts additionals menu
