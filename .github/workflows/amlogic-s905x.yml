@@ -20,15 +20,15 @@ on:
         default: "21.02.5"
         type: choice
         options:
-          - 21.02.5
-          - 22.03.2
+          - openwrt-21.02.5
+          - immortalwrt-21.02.5
       config:
         description: "Set the path .config"
         required: true
         default: ".config_s905x"
 
 env:
-  REPO_URL: https://github.com/Haris131/Actions-OpenWrt/trunk/openwrt-${{ github.event.inputs.branch }}
+  REPO_URL: https://github.com/Haris131/Actions-OpenWrt/trunk/${{ github.event.inputs.branch }}
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: ${{ github.event.inputs.config }}
   DIY_P1_SH: diy-part1.sh
