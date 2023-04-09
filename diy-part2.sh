@@ -36,7 +36,7 @@ svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/l
 git clone --depth=1 https://github.com/gSpotx2f/luci-app-temp-status package/luci-app-temp-status
 
 # HelmiWrt packages
-#git clone --depth=1 https://github.com/Haris131/helmiwrt-packages package/helmiwrt-packages
+git clone --depth=1 https://github.com/Haris131/helmiwrt-packages package/helmiwrt-packages
 
 #-----------------------------------------------------------------------------
 #   Start of @helmiau terminal scripts additionals menu
