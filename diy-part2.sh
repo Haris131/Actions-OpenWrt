@@ -13,6 +13,9 @@
 # Modify default IP
 #sed -i 's/192.168.1.1/192.168.50.5/g' package/base-files/files/bin/config_generate
 
+# Clone community packages to package
+[[ -d package ]] && mkdir package
+
 # Modemfeed
 svn co https://github.com/koshev-msk/modemfeed/trunk/luci package/luci
 svn co https://github.com/koshev-msk/modemfeed/trunk/packages package/packages
