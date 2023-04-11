@@ -13,9 +13,6 @@
 # Modify default IP
 #sed -i 's/192.168.1.1/192.168.50.5/g' package/base-files/files/bin/config_generate
 
-# Clone community packages to package
-[[ -d package ]] && mkdir package
-
 # Modemfeed
 svn co https://github.com/koshev-msk/modemfeed/trunk/luci package/luci
 svn co https://github.com/koshev-msk/modemfeed/trunk/packages package/packages
@@ -32,14 +29,11 @@ svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/l
 # Add luci-app-adguardhome
 git clone --depth=1 https://github.com/yang229/luci-app-adguardhome package/luci-app-adguardhome
 
-# Add luci-app-openclash
-svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/luci-app-openclash
-
 # Add luci-app-temp-status
 git clone --depth=1 https://github.com/gSpotx2f/luci-app-temp-status package/luci-app-temp-status
 
 # HelmiWrt packages
-git clone --depth=1 https://github.com/Haris131/helmiwrt-packages package/helmiwrt-packages
+git clone --depth=1 https://github.com/Haris131/helmiwrt-packages package/community
 
 #-----------------------------------------------------------------------------
 #   Start of @helmiau terminal scripts additionals menu
