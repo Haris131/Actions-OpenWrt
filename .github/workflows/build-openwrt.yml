@@ -22,6 +22,7 @@ env:
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
   UPLOAD_BIN_DIR: true
+  UPLOAD_SDK_DIR: true
   UPLOAD_FIRMWARE: true
   TZ: Asia/Jakarta
 
@@ -103,7 +104,7 @@ jobs:
 
     - name: Upload SDK directory
       uses: actions/upload-artifact@main
-      if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
+      if: env.UPLOAD_SDK_DIR == 'true'
       with:
         name: OpenWrt${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
         path: openwrt
