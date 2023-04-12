@@ -3,13 +3,6 @@ CONFIG_TARGET_armvirt=y
 CONFIG_TARGET_armvirt_64=y
 CONFIG_TARGET_armvirt_64_Default=y
 
-# LuCI Themes
-CONFIG_PACKAGE_luci-theme-material=y
-
-# LuCI Languages
-CONFIG_LUCI_LANG_en=y
-CONFIG_PACKAGE_luci-i18n-base-en=y
-
 # Custom
 CONFIG_PACKAGE_luci-app-libernet-plus=y
-# CONFIG_PACKAGE_luci-app-libernet-plus-ssh is not set
+CONFIG_PACKAGE_luci-app-libernet-plus-ssh=y
