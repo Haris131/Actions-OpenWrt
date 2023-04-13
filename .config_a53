@@ -4,4 +4,5 @@ CONFIG_TARGET_armvirt_64=y
 CONFIG_TARGET_armvirt_64_Default=y
 
 # Custom
+CONFIG_PACKAGE_luci-app-libernet-plus-ssh=y
 CONFIG_PACKAGE_luci-app-libernet-plus=y
