@@ -23,18 +23,11 @@ svn co https://github.com/ophub/luci-app-amlogic/trunk/luci-app-amlogic package/
 # Add luci-app-openclash
 svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/luci-app-openclash
 
-# Add luci-app-diskman
-#svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-app-diskman package/luci-app-diskman
-
-# Add luci-app-adguardhome
-git clone --depth=1 https://github.com/yang229/luci-app-adguardhome package/luci-app-adguardhome
-
 # Add luci-app-temp-status
 git clone --depth=1 https://github.com/gSpotx2f/luci-app-temp-status package/luci-app-temp-status
 
 # HelmiWrt packages
 git clone --depth=1 https://github.com/Haris131/helmiwrt-packages package/community
-rm -rf package/community/helmiwrt-packages/luci-app-libernet-plus-ssh
 
 #-----------------------------------------------------------------------------
 #   Start of @helmiau terminal scripts additionals menu
