@@ -21,7 +21,7 @@ env:
   CONFIG_FILE: .config_a53
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
-  UPLOAD_BIN_DIR: true
+  UPLOAD_TMP_DIR: true
   UPLOAD_SDK_DIR: true
   UPLOAD_FIRMWARE: true
   TZ: Asia/Jakarta
@@ -102,12 +102,12 @@ jobs:
         name: OpenWrt_bin${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
         path: openwrt/bin
 
-    - name: Upload SDK directory
+    - name: Upload tmp directory
       uses: actions/upload-artifact@main
-      if: env.UPLOAD_SDK_DIR == 'true'
+      if: env.UPLOAD_TMP_DIR == 'true'
       with:
-        name: OpenWrt${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
-        path: openwrt
+        name: OpenWrt_tmp${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
+        path: openwrt/tmp
 
     - name: Organize files
       id: organize
