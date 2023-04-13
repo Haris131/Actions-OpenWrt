@@ -34,7 +34,7 @@ git clone --depth=1 https://github.com/gSpotx2f/luci-app-temp-status package/luc
 
 # HelmiWrt packages
 git clone --depth=1 https://github.com/Haris131/helmiwrt-packages package/community
-rm -rf package/community/helmiwrt-packages/luci-app-libernet-plus
+rm -rf package/community/helmiwrt-packages/luci-app-libernet-plus-ssh
 
 #-----------------------------------------------------------------------------
 #   Start of @helmiau terminal scripts additionals menu
