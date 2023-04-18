@@ -15,6 +15,4 @@ CONFIG_BUSYBOX_CONFIG_FEATURE_TELNETD_STANDALONE=y
 # CONFIG_TARGET_IMAGES_GZIP is not set
 
 # Custom
-CONFIG_PACKAGE_luci-app-libernet-plus-ssh=y
 CONFIG_PACKAGE_luci-app-libernet-plus-simple=y
-CONFIG_PACKAGE_luci-app-libernet-plus=y
